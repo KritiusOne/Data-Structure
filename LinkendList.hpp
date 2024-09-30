@@ -12,5 +12,8 @@ struct Nodo {
   }
 };
 
-void printList(const Nodo &head);
+void printList(std::unique_ptr<Nodo> &head);
+void TailInsersion(std::unique_ptr<Nodo> &head, int value);
+
+
 #endif
