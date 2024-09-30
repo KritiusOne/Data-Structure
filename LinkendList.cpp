@@ -1,11 +1,12 @@
 #include "LinkendList.hpp"
 
 void printList(std::unique_ptr<Nodo> &head){
-  const Nodo* aux = std::move(head.get());
+  Nodo* aux = head.get();
   while(aux){
     std::cout << aux->number << "->";
     aux = aux->next.get();
   }
+  std::cout << "\n";
 }
 
 void TailInsersion(std::unique_ptr<Nodo> &head, int value){
@@ -35,4 +36,17 @@ std::unique_ptr<Nodo> FindFirst(std::unique_ptr<Nodo> &head, int value){
     aux = aux->next.get();
   }
   return nullptr;
+}
+
+void Update(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
+  if(head == nullptr){
+    std::cout << "La cabeza no existe" << std::endl;
+    return;
+  }
+  std::unique_ptr<Nodo> finded = FindFirst(head, toReplace);
+  if(finded == nullptr){
+    std::cout << "No se encontro resultado" << std::endl;
+    return;
+  }
+  finded->number = toInsert;
 }
