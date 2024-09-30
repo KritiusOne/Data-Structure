@@ -14,6 +14,7 @@ struct Nodo {
 
 void printList(std::unique_ptr<Nodo> &head);
 void TailInsersion(std::unique_ptr<Nodo> &head, int value);
+std::unique_ptr<Nodo> FindFirst(std::unique_ptr<Nodo> &head,int value);
 
 
 #endif

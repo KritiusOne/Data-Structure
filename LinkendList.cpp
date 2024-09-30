@@ -20,3 +20,19 @@ void TailInsersion(std::unique_ptr<Nodo> &head, int value){
   std::unique_ptr<Nodo> newNodo = std::make_unique<Nodo>(value);
   aux->next = std::move(newNodo);
 }
+
+std::unique_ptr<Nodo> FindFirst(std::unique_ptr<Nodo> &head, int value){
+  if(head == nullptr){
+    std::cout << "La cabeza no existe" << std::endl;
+    return nullptr;
+  }
+  Nodo* aux = head.get();
+  while(aux != nullptr){
+    if(aux->number == value){
+      std::unique_ptr<Nodo> finded(aux);
+      return finded;
+    }
+    aux = aux->next.get();
+  }
+  return nullptr;
+}
