@@ -2,6 +2,9 @@
 
 void printList(std::unique_ptr<Nodo> &head){
   Nodo* aux = head.get();
+  if(aux == nullptr){
+    std::cout<<"La cabeza es null"<<std::endl;
+  }
   while(aux){
     std::cout << aux->number << "->";
     aux = aux->next.get();
@@ -22,16 +25,15 @@ void TailInsersion(std::unique_ptr<Nodo> &head, int value){
   aux->next = std::move(newNodo);
 }
 
-std::unique_ptr<Nodo> FindFirst(std::unique_ptr<Nodo> &head, int value){
+Nodo* FindFirst(std::unique_ptr<Nodo> &head, int value){
   if(head == nullptr){
     std::cout << "La cabeza no existe" << std::endl;
     return nullptr;
   }
   Nodo* aux = head.get();
-  while(aux != nullptr){
+  while(aux->next != nullptr){
     if(aux->number == value){
-      std::unique_ptr<Nodo> finded(aux);
-      return finded;
+      return aux;
     }
     aux = aux->next.get();
   }
@@ -43,7 +45,7 @@ void Update(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
     std::cout << "La cabeza no existe" << std::endl;
     return;
   }
-  std::unique_ptr<Nodo> finded = FindFirst(head, toReplace);
+  Nodo* finded = FindFirst(head, toReplace);
   if(finded == nullptr){
     std::cout << "No se encontro resultado" << std::endl;
     return;
