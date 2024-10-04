@@ -52,3 +52,16 @@ void UpdateValue(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
   }
   finded->number = toInsert;
 }
+void DeleteNode(std::unique_ptr<Nodo> &head, int toDelete){
+  if(head == nullptr){
+    std::cout << "La cabeza no existe" << std::endl;
+    return;
+  }
+  Nodo* aux = FindFirst(head, toDelete);
+  Nodo* aux2 = head.get();
+  while(aux2->next->number != aux->number) {
+    aux2 = aux2->next.get();
+  }
+  aux2->next = std::move(aux->next);
+
+}
