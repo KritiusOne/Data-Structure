@@ -40,7 +40,7 @@ Nodo* FindFirst(std::unique_ptr<Nodo> &head, int value){
   return nullptr;
 }
 
-void Update(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
+void UpdateValue(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
   if(head == nullptr){
     std::cout << "La cabeza no existe" << std::endl;
     return;
