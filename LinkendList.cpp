@@ -12,7 +12,7 @@ void printList(std::unique_ptr<Nodo> &head){
   std::cout << "\n";
 }
 
-void TailInsersion(std::unique_ptr<Nodo> &head, int value){
+void tailInsersion(std::unique_ptr<Nodo> &head, int value){
   if(head == nullptr){
     std::cout << "No existe la cabeza" << std::endl;
     return;
@@ -25,13 +25,13 @@ void TailInsersion(std::unique_ptr<Nodo> &head, int value){
   aux->next = std::move(newNodo);
 }
 
-Nodo* FindFirst(std::unique_ptr<Nodo> &head, int value){
+Nodo* findFirst(std::unique_ptr<Nodo> &head, int value){
   if(head == nullptr){
     std::cout << "La cabeza no existe" << std::endl;
     return nullptr;
   }
   Nodo* aux = head.get();
-  while(aux->next != nullptr){
+  while(aux != nullptr){
     if(aux->number == value){
       return aux;
     }
@@ -40,28 +40,36 @@ Nodo* FindFirst(std::unique_ptr<Nodo> &head, int value){
   return nullptr;
 }
 
-void UpdateValue(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
+void updateValue(std::unique_ptr<Nodo> &head, int toReplace, int toInsert){
   if(head == nullptr){
     std::cout << "La cabeza no existe" << std::endl;
     return;
   }
-  Nodo* finded = FindFirst(head, toReplace);
+  Nodo* finded = findFirst(head, toReplace);
   if(finded == nullptr){
     std::cout << "No se encontro resultado" << std::endl;
     return;
   }
   finded->number = toInsert;
 }
-void DeleteNode(std::unique_ptr<Nodo> &head, int toDelete){
+void deleteNode(std::unique_ptr<Nodo> &head, int toDelete){
   if(head == nullptr){
     std::cout << "La cabeza no existe" << std::endl;
     return;
   }
-  Nodo* aux = FindFirst(head, toDelete);
+  Nodo* aux = head.get();
+  if(aux->number == toDelete){
+    head = std::move(aux->next);
+    return;
+  }
+  aux = findFirst(head, toDelete);
+  if(aux == nullptr){
+    std::cout << "No existe el nodo a eliminar" << std::endl;
+    return;
+  }
   Nodo* aux2 = head.get();
-  while(aux2->next->number != aux->number) {
+  while(aux != nullptr && aux2->next->number != aux->number) {
     aux2 = aux2->next.get();
   }
   aux2->next = std::move(aux->next);
-
 }
