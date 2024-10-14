@@ -14,7 +14,7 @@ struct Nodo {
 
 void printList(std::unique_ptr<Nodo> &head);
 void tailInsersion(std::unique_ptr<Nodo> &head, int value);
-void headInsertion(std::unique_ptr<Nodo> &head, int value);
+std::unique_ptr<Nodo> headInsertion(std::unique_ptr<Nodo> &head, int value);
 Nodo* findFirst(std::unique_ptr<Nodo> &head,int value);
 void updateValue(std::unique_ptr<Nodo> &head, int toReplace, int toInsert);
 void deleteNode(std::unique_ptr<Nodo> &head, int toDelete);
