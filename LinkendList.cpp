@@ -73,3 +73,12 @@ void deleteNode(std::unique_ptr<Nodo> &head, int toDelete){
   }
   aux2->next = std::move(aux->next);
 }
+std::unique_ptr<Nodo> headInsertion(std::unique_ptr<Nodo> &head, int value){
+  if(head == nullptr){
+    std::cout << "La cabeza no existe" << std::endl;
+    return nullptr;
+  }
+  std::unique_ptr<Nodo> newHead = std::make_unique<Nodo>(value);
+  newHead->next = std::move(head);
+  return newHead;
+}
